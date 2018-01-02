@@ -1,0 +1,55 @@
+#include<cstdio>
+#include<iostream>
+#include<cmath>
+#include<stack>
+#include<algorithm>
+#include<string>
+#include<cstring>
+#include<vector>
+#include<queue>
+#include <functional>
+#include<map>
+#include<iomanip>
+#include<set>
+#include <utility>
+#include<queue>
+#include<bitset>
+#define ll long long
+#define maxn 10050
+#define lson l , m , rt << 1
+#define rson m + 1 , r , rt << 1 | 1
+#define maxm 1005
+const ll mod = 1000000007;
+const double pi = acos(-1);
+const double eps = 1e-9;
+const long long inf = 0x3f3f3f3f3f3f3f3f;	
+using namespace std;
+char a[10];
+int b[50],c[10];
+int main()
+{
+	int n,m,k;
+	scanf("%d", &n);
+	while (n--)
+	{
+		scanf("%s", a);
+		scanf("%d%d", &m, &k);
+		for (int i = 0; i < 8; ++i)if (a[i] <= '9'&&a[i] >= '0')c[i] = a[i] - '0'; else c[i] = a[i] - 'A'+10;
+		for (int i = 0; i < 8; ++i)
+			for (int j = 3; j >= 0; --j)
+			{
+				b[i * 4 + j] = c[i] % 2;
+				c[i] /= 2;
+			}
+		for (int i = m - 1; i >= 0; --i) { b[i] = k % 2; k/= 2; }
+		for (int i = 0; i < 8; ++i)
+		{
+			int temp=0;
+			for (int j = 3; j >= 0; ++j)temp += (b[i*4+3-j] << j);
+			if (temp > 9)printf("%c", 'A' + temp - 10);
+			else printf("%c", '0' + temp);
+		}
+		printf("\n");
+	}
+	return 0;
+}
